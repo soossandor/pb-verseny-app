@@ -5,7 +5,7 @@ import google.generativeai as genai
 st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓", layout="centered")
 
 st.title("🏓 Sopron Pickleball & Fesztivál Asszisztens")
-st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
+st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
 
 # 2. A Gemini API kulcs biztonságos kezelése a felhőben
 if "GEMINI_API_KEY" in st.secrets:
@@ -31,7 +31,7 @@ VERSENY_KONTEXTUS = """
 - Óvás: Csak a verseny ideje alatt, írásban, 10.000 Ft óvási díj megfizetésével nyújtható be a versenyző által. Elfogadás esetén visszajár.
 
 === 2. CSOPORTKÖRÖK ÉS LEBONYOLÍTÁSI REND ===
-A csoportok rangsorolása: 1. Több győzelem, 2. Egymás elleni eredmény (ha 2 holtverseny van), 3. Pontarány (szerzett/vesztett pontok), 4. Egymás elleni mérkőzés.
+A csoportok rangsorolása: 1. Több győzelem, 2. Egymás ellen elért eredmény (ha 2 holtverseny van), 3. Pontarány (szerzett/vesztett pontok), 4. Egymás elleni mérkőzés.
 
 Kategóriák továbbjutási rendje:
 - Női egyéni OB2/A (7 fő: 1x3 + 1x4 csoport): Főág (1-4. hely): A1-B2, B1-A2. Mellékág (5-7. hely): A3-B4, B3-BYE.
@@ -249,7 +249,7 @@ VASÁRNAP DELES ÉS DÉLUTÁNI VEGYES PÁROSOK:
 13:20-tól vasárnap délután végéig: Vegyes páros OB2/A és OB2/B egyenes kieséses rájátszások (Main QF, SF, döntők, vigaszágak és minden helyosztó pozíció).
 """
 
-# 4. Rendszer-utasítások konfigurálása (Témakorláttal a nem kívánt kérések ellen)
+# 4. Rendszer-utasítások konfigurálása
 SYSTEM_INSTRUCTION = f"""
 Te egy profi Pickleball Versenybíró és Mentor vagy, aki most Sopronban tartózkodik az Országos Bajnokságon. A küldetésed a játékosok és látogatók maximális kiszolgálása.
 
@@ -261,7 +261,7 @@ Amennyiben a kérdés egy konkrét soproni tornára vonatkozó adatra irányul (
 
 2. ÁLTALÁNOS PICKLEBALL TUDÁS: Ha a kérdés általános pickleball szabályra, kifejezésre, pontozásra, ütésfajtára vagy taktikára vonatkozik, használd a saját széleskörű pickleball szakértelmedet, és válaszolj rá részletesen és segítőkészen.
 
-3. SOPRON VÁROSA ÉS SOPRON FEST: Ha a kérdés Sopron látnivalóira, éttermeire, helyi közlekedésére (pl. hogyan jutnak el az SVSE Sporttelepre), vagy a most hétvégén zajló Sopron Fest zenei/kulturális fesztiválra, annak hangulatára, helyszínére vagy általános tudnivalóira vonatkozik, használd a saját tudásodat és válaszolj bátran! Segíts nekik fesztivál- és városi tippekkel.
+3. SOPRON VÁROSA ÉS SOPRON FEST: Ha a kérdés Sopron látnivalóira, éttermeire, helyi közlekedésére, vagy a most hétvégén zajló Sopron Fest zenei/kulturális fesztiválra, annak hangulatára, helyszínére vagy részletes napi programjaira vonatkozik, válaszolj bátran a Google Keresés segítségével! Segíts nekik naprakész fesztivál- és városi tippekkel.
 
 4. SZIGORÚ TÉMAKORLÁT: Ha a kérdés egyáltalán NEM kapcsolódik a pickleballhoz, a soproni bajnoksághoz, Sopron városához vagy a Sopron Festhez (pl. iskolai házi feladat, rántott hús recept, programozás, szerelmes versek), akkor NE válaszolj rá! Udvariasan, pici sportos humorral utasítsd vissza, és emlékeztesd a felhasználót, hogy ez az app kizárólag a Sopron Pickleball & Fesztivál hivatalos asszisztense.
 
@@ -270,18 +270,20 @@ Szabályok:
 - A stílusod legyen sportszerű, profi, de barátságos és közvetlen.
 """
 
-# 5. Felhasználói felület és keresési logika
-user_query = st.text_input("Mit szeretnél tudni? (pl. 'Sipos Anna szombat', 'Kitchen szabály', 'Sopron Fest tippek')", "")
+# 5. Felhasználói felület és keresési logika ÉLŐ GOOGLE GROUNDING-AL
+user_query = st.text_input("Mit szeretnél tudni? (pl. 'Sipos Anna szombat', 'Kitchen szabály', 'Ki lép fel ma este a Sopron Festen?')", "")
 
 if user_query:
     try:
         genai.configure(api_key=api_key)
+        # Itt kapcsoltuk be az élő internetes keresés támogatást (tools='google_search_retrieval')
         model = genai.GenerativeModel(
             model_name="gemini-2.5-flash",
-            system_instruction=SYSTEM_INSTRUCTION
+            system_instruction=SYSTEM_INSTRUCTION,
+            tools='google_search_retrieval'
         )
         
-        with st.spinner("Asszisztens gondolkodik..."):
+        with st.spinner("Asszisztens gondolkodik és keres..."):
             response = model.generate_content(user_query)
             
         st.chat_message("assistant").write(response.text)
@@ -289,4 +291,4 @@ if user_query:
     except Exception as e:
         st.error(f"Hiba történt a lekérdezés során: {e}")
 
-st.info("Tipp: Ha a saját menetrendedet keresed, pontosan úgy írd be a neved, ahogy a nevezési listában szerepel (pl. 'SIPOS ANNA'). Ha kikapcsolódnál, kérdezz a Sopron Festről!")
+st.info("Tipp: Ha a saját menetrendedet keresed, pontosan úgy írd be a neved, ahogy a nevezési listában szerepel (pl. 'SIPOS ANNA'). Ha kikapcsolódnál, bátran kérdezz a Sopron Fest mai fellépőiről!")
