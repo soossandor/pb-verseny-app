@@ -1,4 +1,4 @@
-import streamlit as streamlit
+import streamlit as st
 import google.generativeai as genai
 
 # 1. Alapbeállítások és stílus (Mobilra optimalizálva)
