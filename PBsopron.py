@@ -1,5 +1,6 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 # 1. Alapbeállítások és stílus (Mobilra optimalizálva)
 st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓", layout="centered")
@@ -7,7 +8,7 @@ st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓",
 st.title("🏓 Sopron Pickleball & Fesztivál Asszisztens")
 st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
 
-# 2. A Gemini API kulcs biztonságos kezelése a felhőben (Nincs felesleges oldalsáv)
+# 2. A Gemini API kulcs biztonságos kezelése a felhőben
 if "GEMINI_API_KEY" in st.secrets:
     api_key = st.secrets["GEMINI_API_KEY"]
 else:
@@ -23,7 +24,7 @@ VERSENY_KONTEXTUS = """
 - Versenybizottság: Böhm Zoltán (+36 30/458-1231), Miklós László (+36 30/274-9423), Takács Attila (Póttag: Komáromi Róbert).
 - Hivatalos Labda: Franklin márkájú kültéri labda. A labda színével megegyező vagy ahhoz nagyon hasonló felszerelés (ruha) viselése TILOS!
 - Bemelegítés: Minden mérkőzés előtt pontosan 2 perc áll rendelkezésre. Ha a játékos a bemelegítés végére nem jelenik meg, leléptethető.
-- Pontozólapok kezelése: A mérkőzés előtt a menetrendben elöl/bal oldalon szereplő csapat veszi át a zsűriasztalnál. A meccs után a győztes feladata a helyes kitöltés és a leadás a befejezést követő 2 percen belül.
+- Pontozólapok kezelése: A mérkőzés előtt a menetrendben elöl/bal oldalon szereplő csapat veszi át a zsűriasztalnál. A meccs után a győztes feladata a helyes kitöltés és a leadás a befejezést követő 2 percen binnen.
 - Mérkőzések menete: 1 nyert játszmáig (szettig) tartanak. A győzelemhez 11 pontot kell elérni, legalább 2 pont különbséggel.
 - Térfélcsere: Amikor a mérkőzésen vezető játékos/páros eléri a 6 pontot, térfélcserére kerül sor.
 - Időkérés: Meccsenként minden játékosnak/párosnak pontosan 1 db időkérési lehetősége van.
@@ -270,21 +271,24 @@ Szabályok:
 - A stílusod legyen sportszerű, profi, de barátságos és közvetlen.
 """
 
-# 5. Felhasználói felület és keresési logika ÉLŐ GOOGLE GROUNDING-AL
+# 5. Felhasználói felület és keresési logika ÉLŐ GOOGLE GROUNDING-AL (Új SDK Szintaxis!)
 user_query = st.text_input("Mit szeretnél tudni? (pl. 'Sipos Anna szombat', 'Kitchen szabály', 'Ki lép fel ma este a Sopron Festen?')", "")
 
 if user_query:
     try:
-        genai.configure(api_key=api_key)
-        # Strukturált, szótár-alapú deklaráció az élő Google kereséshez (megfelel a legújabb követelményeknek)
-        model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            system_instruction=SYSTEM_INSTRUCTION,
-            tools=[{"google_search": {}}]
-        )
+        # Az új, 2026-os hivatalos Google GenAI kliens inicializálása
+        client = genai.Client(api_key=api_key)
         
         with st.spinner("Asszisztens gondolkodik és keres..."):
-            response = model.generate_content(user_query)
+            # Tartalom generálása az új SDK szabályai szerint, beépített stabil Google Kereséssel
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=user_query,
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_INSTRUCTION,
+                    tools=[{"google_search": {}}]  # Ez a hivatalos, hibátlanul futó formátum az új SDK-ban
+                )
+            )
             
         st.chat_message("assistant").write(response.text)
         
