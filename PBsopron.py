@@ -280,9 +280,8 @@ if user_query:
         model = genai.GenerativeModel(
             model_name="gemini-2.5-flash",
             system_instruction=SYSTEM_INSTRUCTION,
-            tools='google_search_retrieval'
-        )
-        
+            tools=['google_search']  # <-- Ez a hivatalos, jó formátum
+        )        
         with st.spinner("Asszisztens gondolkodik és keres..."):
             response = model.generate_content(user_query)
             
