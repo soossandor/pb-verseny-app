@@ -4,10 +4,10 @@ import google.generativeai as genai
 # 1. Alapbeállítások és stílus (Mobilra optimalizálva)
 st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓", layout="centered")
 
-st.title("🏓 Sopron Pickleball Asszisztens")
-st.write("Írd be a neved vagy a kérdésed, és a mesterséges intelligencia azonnal kikeresi a menetrended vagy a szabályokat!")
+st.title("🏓 Sopron Pickleball & Fesztivál Asszisztens")
+st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
 
-# 2. A Gemini API kulcs biztonságos kezelése a felhőben (Nincs többé oldalsáv!)
+# 2. A Gemini API kulcs biztonságos kezelése a felhőben
 if "GEMINI_API_KEY" in st.secrets:
     api_key = st.secrets["GEMINI_API_KEY"]
 else:
@@ -18,10 +18,10 @@ else:
 VERSENY_KONTEXTUS = """
 === 1. ÁLTALÁNOS VERSENYINFORMÁCIÓK ÉS SZABÁLYOK ===
 - Verseny megnevezése: Magyar Országos Pickleball Bajnokság 2026 - Másodosztály - 3. forduló.
-- Időpont: 2026. július 4-5. (Szombat és Vasárnap).
+- Időpont: 2026. július 4-05. (Szombat és Vasárnap).
 - Helyszín: 9400 Sopron, Lővér krt. 1., SVSE Sporttelep.
 - Versenybizottság: Böhm Zoltán (+36 30/458-1231), Miklós László (+36 30/274-9423), Takács Attila (Póttag: Komáromi Róbert).
-- Hivatalos Labda: Franklin márkájú kültéri labda. A labda színével (sárga, világos sárgászöld) megegyező vagy ahhoz nagyon hasonló felszerelés (ruha) viselése TILOS!
+- Hivatalos Labda: Franklin márkájú kültéri labda. A labda színével megegyező vagy ahhoz nagyon hasonló felszerelés (ruha) viselése TILOS!
 - Bemelegítés: Minden mérkőzés előtt pontosan 2 perc áll rendelkezésre. Ha a játékos a bemelegítés végére nem jelenik meg, leléptethető.
 - Pontozólapok kezelése: A mérkőzés előtt a menetrendben elöl/bal oldalon szereplő csapat veszi át a zsűriasztalnál. A meccs után a győztes feladata a helyes kitöltés és a leadás a befejezést követő 2 percen belül.
 - Mérkőzések menete: 1 nyert játszmáig (szettig) tartanak. A győzelemhez 11 pontot kell elérni, legalább 2 pont különbséggel.
@@ -123,7 +123,7 @@ FÉRFI EGYÉNI INDULÁSOK (SZOMBAT KORADÉLUTÁN):
 - 13:00 C2: B. TÖRÖK vs. V. TAKÁCS (Férfi egyéni OB2/A - Group B-R1)
 - 13:00 C3: Z. CSENDE vs. A. SCHMIDT (Férfi egyéni OB2/A - Group D-R2)
 - 13:00 C4: C. MAGYAR vs. A. TAKÁCS (Férfi egyéni OB2/A - Group D-R2)
-- 13:00 C5: D. MAGYAR vs. Á. DÁVID (Férfi egy XLV egyéni OB2/B - Group A-R2)
+- 13:00 C5: D. MAGYAR vs. Á. DÁVID (Férfi egyéni OB2/B - Group A-R2)
 - 13:00 C6: P. PAWLETKO vs. S. MÉSZÁROS (Férfi egyéni OB2/B - Group B-R2)
 - 13:00 C7: J. DINNYÉS vs. V. PÉNTEK (Férfi egyéni OB2/B - Group C-R2)
 - 13:00 C8: D. TRAN VAN vs. L. SZELI (Férfi egyéni OB2/B - Group C-R2)
@@ -189,7 +189,7 @@ M3 KÖR (08:40):
 
 09:00-tól: Női páros elődöntők, helyosztók és döntők (OB2/A és OB2/B).
 
-VASÁRNAP DÉLELŐTTI ÉS DÉLUTÁNI VEGYES PÁROSOK:
+VASÁRNAP DELES ÉS DÉLUTÁNI VEGYES PÁROSOK:
 - 09:40 C1: S. TARR / G. TARRNÉ KAJTÁR vs. M. MÁTÉ-SZALAI / T. TORMA (Vegyes páros OB2/A - Group A-R1)
 - 09:40 C2: S. BERTA / G. PETRA vs. E. FANCSALINÉ KOTÁN / L. TORMA (Vegyes páros OB2/B - Group A-R1)
 - 09:40 C3/4: B. FEKETE / D. FEKETÉNÉ GYULAI vs. K. JAGICZA / D. TRAN VAN (Vegyes páros OB2/B - Group B-R1); A. SIPOS / A. MÁTÉ vs. R. FEKETE ANDREA / B. FÜZI (Vegyes páros OB2/B - Group C-R1)
@@ -249,20 +249,29 @@ VASÁRNAP DÉLELŐTTI ÉS DÉLUTÁNI VEGYES PÁROSOK:
 13:20-tól vasárnap délután végéig: Vegyes páros OB2/A és OB2/B egyenes kieséses rájátszások (Main QF, SF, döntők, vigaszágak és minden helyosztó pozíció).
 """
 
-# 4. Rendszer-utasítások konfigurálása
+# 4. Rendszer-utasítások konfigurálása (Témakorláttal a nem kívánt kérések ellen)
 SYSTEM_INSTRUCTION = f"""
-Te egy profi Pickleball Versenybíró és Mentor vagy. A küldetésed, hogy a megadott versenyadatok alapján pontosan, röviden és barátságosan válaszolj a játékosok kérdéseire.
-Kizárólag az alábbi adatokból dolgozhatsz:
+Te egy profi Pickleball Versenybíró és Mentor vagy, aki most Sopronban tartózkodik az Országos Bajnokságon. A küldetésed a játékosok és látogatók maximális kiszolgálása.
+
+A válaszadás során az alábbi prioritási és témakör-rendet kövesd:
+
+1. SOPRONI VERSENYADATOK: Ha a kérdés a konkrét hétvégi soproni menetrendre, játékosokra, helyszínre vagy egyedi szabályokra vonatkozik, KIZÁRÓLAG az alábbi adatokból dolgozhatsz:
 {VERSENY_KONTEXTUS}
+Amennyiben a kérdés egy konkrét soproni tornára vonatkozó adatra irányul (pl. egy meccs pontszerű végeredménye), ami nincs benne a szövegben, mondd azt: "Erről nincs pontos információm a kiírásban, kérlek fordulj a versenybírósághoz!"
+
+2. ÁLTALÁNOS PICKLEBALL TUDÁS: Ha a kérdés általános pickleball szabályra, kifejezésre, pontozásra, ütésfajtára vagy taktikára vonatkozik, használd a saját széleskörű pickleball szakértelmedet, és válaszolj rá részletesen és segítőkészen.
+
+3. SOPRON VÁROSA ÉS SOPRON FEST: Ha a kérdés Sopron látnivalóira, éttermeire, helyi közlekedésére (pl. hogyan jutnak el az SVSE Sporttelepre), vagy a most hétvégén zajló Sopron Fest zenei/kulturális fesztiválra, annak hangulatára, helyszínére vagy általános tudnivalóira vonatkozik, használd a saját tudásodat és válaszolj bátran! Segíts nekik fesztivál- és városi tippekkel.
+
+4. SZIGORÚ TÉMAKORLÁT: Ha a kérdés egyáltalán NEM kapcsolódik a pickleballhoz, a soproni bajnoksághoz, Sopron városához vagy a Sopron Festhez (pl. iskolai házi feladat, rántott hús recept, programozás, szerelmes versek), akkor NE válaszolj rá! Udvariasan, pici sportos humorral utasítsd vissza, és emlékeztesd a felhasználót, hogy ez az app kizárólag a Sopron Pickleball & Fesztivál hivatalos asszisztense.
 
 Szabályok:
-1. Ha a játékos a nevére keres, listázd ki az összes meccsét időponttal, ellenféllel és pályaszámmal!
-2. SOHA NE hallucinálj! Ha valami nem szerepel az adatok között, mondd azt: "Erről nincs pontos információm a kiírásban, kérlek fordulj a versenybírósághoz!"
-3. Használj félkövér kiemeléseket a lényeges részeknél (időpont, pálya)!
+- Használj listákat és félkövér kiemeléseket a lényeges részeknél (időpontok, pályák, helyszínek) a könnyebb olvashatóságért!
+- A stílusod legyen sportszerű, profi, de barátságos és közvetlen.
 """
 
 # 5. Felhasználói felület és keresési logika
-user_query = st.text_input("Mit szeretnél tudni? (pl. 'Sipos Anna szombat', vagy 'Hány pontig tart egy szett?')", "")
+user_query = st.text_input("Mit szeretnél tudni? (pl. 'Sipos Anna szombat', 'Kitchen szabály', 'Sopron Fest tippek')", "")
 
 if user_query:
     try:
@@ -272,7 +281,7 @@ if user_query:
             system_instruction=SYSTEM_INSTRUCTION
         )
         
-        with st.spinner("Versenybíró gondolkodik..."):
+        with st.spinner("Asszisztens gondolkodik..."):
             response = model.generate_content(user_query)
             
         st.chat_message("assistant").write(response.text)
@@ -280,4 +289,4 @@ if user_query:
     except Exception as e:
         st.error(f"Hiba történt a lekérdezés során: {e}")
 
-st.info("Tipp: Ha a saját menetrendedet keresed, pontosan úgy írd be a neved, ahogy a nevezési listában szerepel (pl. 'SIPOS ANNA').")
+st.info("Tipp: Ha a saját menetrendedet keresed, pontosan úgy írd be a neved, ahogy a nevezési listában szerepel (pl. 'SIPOS ANNA'). Ha kikapcsolódnál, kérdezz a Sopron Festről!")
