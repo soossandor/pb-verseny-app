@@ -7,7 +7,7 @@ st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓",
 st.title("🏓 Sopron Pickleball & Fesztivál Asszisztens")
 st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
 
-# 2. A Gemini API kulcs biztonságos kezelése a felhőben
+# 2. A Gemini API kulcs biztonságos kezelése a felhőben (Nincs felesleges oldalsáv)
 if "GEMINI_API_KEY" in st.secrets:
     api_key = st.secrets["GEMINI_API_KEY"]
 else:
@@ -31,7 +31,7 @@ VERSENY_KONTEXTUS = """
 - Óvás: Csak a verseny ideje alatt, írásban, 10.000 Ft óvási díj megfizetésével nyújtható be a versenyző által. Elfogadás esetén visszajár.
 
 === 2. CSOPORTKÖRÖK ÉS LEBONYOLÍTÁSI REND ===
-A csoportok rangsorolása: 1. Több győzelem, 2. Egymás ellen elért eredmény (ha 2 holtverseny van), 3. Pontarány (szerzett/vesztett pontok), 4. Egymás elleni mérkőzés.
+A csoportok rangsorolása: 1. Több győzelem, 2. Egymás elleni eredmény (ha 2 holtverseny van), 3. Pontarány (szerzett/vesztett pontok), 4. Egymás elleni mérkőzés.
 
 Kategóriák továbbjutási rendje:
 - Női egyéni OB2/A (7 fő: 1x3 + 1x4 csoport): Főág (1-4. hely): A1-B2, B1-A2. Mellékág (5-7. hely): A3-B4, B3-BYE.
@@ -257,7 +257,7 @@ A válaszadás során az alábbi prioritási és témakör-rendet kövesd:
 
 1. SOPRONI VERSENYADATOK: Ha a kérdés a konkrét hétvégi soproni menetrendre, játékosokra, helyszínre vagy egyedi szabályokra vonatkozik, KIZÁRÓLAG az alábbi adatokból dolgozhatsz:
 {VERSENY_KONTEXTUS}
-Amennyiben a kérdés egy konkrét soproni tornára vonatkozó adatra irányul (pl. egy meccs pontszerű végeredménye), ami nincs benne a szövegben, mondd azt: "Erről nincs pontos információm a kiírásban, kérlek fordulj a versenybírósághoz!"
+Amennyiben a kérdés egy konkrét soproni tornára vonatkozó adatra irányul (pl. egy meccs pontszerű végeredménye), ami nincs benne a szövegben, mondd azt: "Erről nincs pontos információm a kiírásban, kérlek fordulj a versenybíróhoz!"
 
 2. ÁLTALÁNOS PICKLEBALL TUDÁS: Ha a kérdés általános pickleball szabályra, kifejezésre, pontozásra, ütésfajtára vagy taktikára vonatkozik, használd a saját széleskörű pickleball szakértelmedet, és válaszolj rá részletesen és segítőkészen.
 
@@ -276,13 +276,14 @@ user_query = st.text_input("Mit szeretnél tudni? (pl. 'Sipos Anna szombat', 'Ki
 if user_query:
     try:
         genai.configure(api_key=api_key)
-        # Itt kapcsoltuk be az élő internetes keresés támogatást (tools='google_search_retrieval')
+        # Strukturált, szótár-alapú deklaráció az élő Google kereséshez (megfelel a legújabb követelményeknek)
         model = genai.GenerativeModel(
             model_name="gemini-2.5-flash",
             system_instruction=SYSTEM_INSTRUCTION,
-            tools=[{"google_search": {}}]  # <-- Így már a könyvtár és a szerver is boldog lesz!
+            tools=[{"google_search": {}}]
         )
-            with st.spinner("Asszisztens gondolkodik és keres..."):
+        
+        with st.spinner("Asszisztens gondolkodik és keres..."):
             response = model.generate_content(user_query)
             
         st.chat_message("assistant").write(response.text)
