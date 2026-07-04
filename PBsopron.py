@@ -90,7 +90,7 @@ VEGYES PÁROSOK (VASÁRNAP):
   * Elődöntők: Mészáros Szerhij - Szeli Lénárd 12:10; Dinnyés János - Tóth András 11:8. Döntő: Mészáros Szerhij - Dinnyés János 11:5. 3. helyért: Tóth András - Szeli Lénárd 11:7.
   * 5. helyért: Racz Robert - Pawletko Peter 11:9. 9. helyért: Nagy Dávid - Tomori Tamás 11:5. 11. helyért: Péntek Vilmos - Bruckner Nándor 11:0. 13. helyért: Fekete Barnabás - Tran Van Dat 11:9.
 - Férfi páros OB2/B helyosztók:
-  * Elődöntők: Alasztics/Németh T. - Fekete K./Mészáros Sz. 11:4; Péntek V./Racz R. - Viszokai L./Molnár R. 11:3. Döntő: Alasztics Benjamin / Németh Tamás - Péntek Vilmos / Racz Robert 11:4. 3. helyért: Fekete Kristóf / Mészáros Szerhij - Viszokai László / Molnár Róbert 11:6.
+  * Elődöntők: Alasztics/Németh T. - Fekete K./Mészáros Sz. 11:4; Péntek V./Racz R. - Viszokai L./Molnár R. 11:3. Döntő: Alasztics Benjamin / Németh Tamás - Péntek Vilmos / Racz Robert 11:4. **3. helyért: Viszokai László / Molnár Róbert legyőzte a Fekete Kristóf / Mészáros Szerhij párost 11:6.**
   * 5. helyért: Dinnyés/Nagy D. - Fekete B./Dávid Á. 11:8. 7. helyért: Pawletko/Tóth A. - Karda/Gulyás 11:3. 9. helyért: Berta Szabolcs / Németh Attila - Le Tan Minh / Le Tan Dung 11:9. 13. helyért: Sándor Soós / Zsolt Simon - Lénárd Szeli / Dániel Kétszeri 11:1.
 
 === 5. SZOMBATI KATEGÓRIÁK HIVATALOS VÉGEREDMÉNYEI ===
@@ -99,7 +99,7 @@ VEGYES PÁROSOK (VASÁRNAP):
 - Férfi egyéni OB2/A: 1. Mayer Iván, 2. Tomori Benedek, 3. Török Bence, 4. Alasztics Benjamin, 5. Csende Zsolt, 6. Magyar Csanád, 7. Fogaras Pál, 8. Fekete Géza.
 - Férfi páros OB2/A: 1. Dobos Ákos / Török Bence, 2. Szabolcsi Attila / Katona Milán, 3. Komáromi Róbert / Tomori Benedek, 4. Fogaras Pál / Fekete Géza, 5. Takács Attila / Tarr Sándor.
 - Férfi egyéni OB2/B: 1. Mészáros Szerhij, 2. Dinnyés János, 3. Tóth András, 4. Szeli Lénárd, 5. Racz Robert, 6. Pawletko Peter, 7. Dávid Ádám.
-- Férfi páros OB2/B: 1. Alasztics Benjamin / Németh Tamás, 2. Péntek Vilmos / Racz Robert, 3. Fekete Kristóf / Mészáros Szerhij, 4. Viszokai László / Molnár Róbert ... 13. Soós Sándor / Simon Zsolt, 14. Szeli Lénárd / Kétszeri Dániel.
+- Férfi páros OB2/B: 1. Alasztics Benjamin / Németh Tamás, 2. Péntek Vilmos / Racz Robert, 3. Viszokai László / Molnár Róbert, 4. Fekete Kristóf / Mészáros Szerhij ... 13. Soós Sándor / Simon Zsolt, 14. Szeli Lénárd / Kétszeri Dániel.
 """
 
 # 4. Rendszer-utasítások konfigurálása
