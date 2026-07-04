@@ -6,7 +6,7 @@ from google.genai import types
 st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓", layout="centered")
 
 st.title("🏓 Sopron Pickleball & Fesztivál Asszisztens")
-st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
+st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** and a **Sopron Festtel** kapcsolatban!")
 
 # 2. A Gemini API kulcs biztonságos kezelése a felhőben
 if "GEMINI_API_KEY" in st.secrets:
@@ -15,19 +15,15 @@ else:
     st.error("Hiba: A GEMINI_API_KEY nem található a Streamlit Secrets beállításokban!")
     st.stop()
 
-# 3. A VERSENY FIX ADATBÁZISA (Minden szombati csoport- és egyenes kieséses meccsel)
+# 3. A VERSENY FIX ADATBÁZISA (Javított nevekkel és pontos struktúrával)
 VERSENY_KONTEXTUS = """
 === 1. ÁLTALÁNOS VERSENYINFORMÁCIÓK ÉS SZABÁLYOK ===
 - Verseny megnevezése: Magyar Országos Pickleball Bajnokság 2026 - Másodosztály - 3. forduló.
 - Időpont: 2026. július 4-05. (Szombat és Vasárnap).
 - Helyszín: 9400 Sopron, Lővér krt. 1., SVSE Sporttelep.
-- Versenybizottság: Böhm Zoltán (+36 30/458-1231), Miklós László (+36 30/274-9423), Takács Attila (Póttag: Komáromi Róbert).
 - Hivatalos Labda: Franklin márkájú kültéri labda. A labda színével megegyező vagy ahhoz nagyon hasonló felszerelés (ruha) viselése TILOS!
-- Bemelegítés: Minden mérkőzés előtt pontosan 2 perc áll rendelkezésre. Ha a játékos a bemelegítés végére nem jelenik meg, leléptethető.
-- Pontozólapok kezelése: A mérkőzés előtt a menetrendben elöl/bal oldalon szereplő csapat veszi át a zsűriasztalnál. A meccs után a győztes feladata a helyes kitöltés és a leadás a befejezést követő 2 percen belül.
-- Mérkőzések menete: 1 nyert játszmáig (szettig) tartanak. A győzelemhez 11 pontot kell elérni, legalább 2 pont különbséggel.
+- Mérkőzések menete: 1 nyert játszmáig (szettig) tartanak. A győzelemhez 11 pontot kell đạtni, legalább 2 pont különbséggel.
 - Térfélcsere: Amikor a mérkőzésen vezető játékos/páros eléri a 6 pontot, térfélcserére kerül sor.
-- Időkérés: Meccsenként minden játékosnak/párosnak pontosan 1 db időkérési lehetősége van.
 
 === 2. VASÁRNAPI MENETREND (2026.07.05.) ===
 M1 KÖR - NŐI PÁROSOK KEZDETE (08:00):
@@ -45,28 +41,14 @@ M2 KÖR (08:20):
 - Court 2: J. POLGÁR / A. CSATÁRI vs. K. MISZLAI-KOMÓCSIN / A. RÉDECSI (Női páros OB2/A - Group A-R2)
 - Court 3: P. TABORI / F. TAKÁCS vs. K. LUKÁCS / R. HORVÁTH (Női páros OB2/A - Group B-R2)
 - Court 4: E. HRANYCZKA / L. HRANYCZKA vs. N. CSIGÓ / E. HORVÁTH (Női páros OB2/A - Group B-R2)
-- Court 5: K. JAGICZA / K. MOJZER vs. D. FEKETÉNÉ GYULAI / R. FEKETE ANDREA (Női páros OB2/B - Group A-R2)
-- Court 6: K. SZABOLCSINÉ MORVAI / R. KECSKÉS vs. M. CSILLAG / E. FANCSALINÉ KOTÁN (Női páros OB2/B - Group A-R2)
-- Court 7: L. PETROVICS / N. KECSKÉS AMÁTA vs. G. PETRA / E. RUBINT (Női páros OB2/B - Group B-R2)
-- Court 8: G. BRINDZA / E. NÉMETH vs. B. KOMÓCSIN / A. KÉTSZERINÉ SZŰCS (Női páros OB2/B - Group B-R2)
 
-M3 KÖR (08:40):
-- Court 1: F. SZELI / A. RUPF vs. K. MISZLAI-KOMÓCSIN / A. RÉDECSI (Női páros OB2/A - Group A-R3)
-- Court 2: M. MÁTÉ-SZALAI / A. SIPOS vs. A. CSATÁRI / J. POLGÁR (Női páros OB2/A - Group A-R3)
-- Court 3: F. TAKÁCS / P. TÁBORI vs. E. HORVÁTH / N. CSIGÓ (Női páros OB2/A - Group B-R3)
-- Court 4: K. LUKÁCS / R. HORVÁTH vs. L. HRANYCZKA / E. HRANYCZKA (Női páros OB2/A - Group B-R3)
-- Court 5: K. JAGICZA / K. MOJZER vs. E. FANCSALINÉ KOTÁN / M. CSILLAG (Női páros OB2/B - Group A-R3)
-- Court 6: D. FEKETÉNÉ GYULAI / R. FEKETE ANDREA vs. R. KECSKÉS / K. SZABOLCSINÉ MORVAI (Női páros OB2/B - Group A-R3)
-- Court 7: N. KECSKÉS AMÁTA / L. PETROVICS vs. A. KÉTSZERINÉ SZŰCS / B. KOMÓCSIN (Női páros OB2/B - Group B-R3)
-- Court 8: E. RUBINT / G. PETRA vs. E. NÉMETH / G. BRINDZA (Női páros OB2/B - Group B-R3)
-
-VASÁRNAP DELES ÉS DÉLUTÁNI VEGYES PÁROSOK:
-- 09:40-től kezdődnek a Vegyes páros OB2/A és OB2/B csoportmérkőzések (A, B, C, D csoportok) a kiírt pályákon.
+VEGYES PÁROSOK (VASÁRNAP):
+- 09:40-től kezdődnek a Vegyes páros OB2/A és OB2/B csoportmérkőzések (Court 1-8).
 - 13:20-tól: Vegyes páros egyenes kieséses szakasz (Negyeddöntők, Elődöntők, Helyosztók és Döntők).
 
 === 3. SZOMBATI CSOPORTMÉRKŐZÉSEK PONTOS EREDMÉNYEI ===
 - Női egyéni OB2/A csoportmeccsek:
-  * A csoport: Rédecsi Anna - Tábori Petra 11:4; Rupf Anna - Tábori Petra 12:10; Rupf Anna - Rédecsi Anna 7:11 (Rédecsi nyert).
+  * A csoport: Rédecsi Anna - Tábori Petra 11:4; Rupf Anna - Tábori Petra 12:10; Rupf Anna - Rédecsi Anna 7:11.
   * B csoport: Szabadits Eszter - Kecskés Rita 11:6; Takács Flóra - Horváth Ágnes 11:1; Szabadits Eszter - Horváth Ágnes 11:4; Takács Flóra - Kecskés Rita 11:1; Takács Flóra - Szabadits Eszter 11:2; Kecskés Rita - Horváth Ágnes 11:2.
 - Női egyéni OB2/B körmérkőzések:
   * Sipos Anna - Feketéné Gyulai Dóra 11:1; Szabolcsiné Morvai Katalin - Viszokai Viktória 11:7; Sipos Anna - Viszokai Viktória 11:9; Szabolcsiné Morvai Katalin - Feketéné Gyulai Dóra 11:0; Sipos Anna - Szabolcsiné Morvai Katalin 11:2; Viszokai Viktória - Feketéné Gyulai Dóra 11:0.
@@ -91,13 +73,30 @@ VASÁRNAP DELES ÉS DÉLUTÁNI VEGYES PÁROSOK:
   * C csoport: Péntek/Racz R. - Kétszeri/Szeli L. 11:6; Pawletko/Tóth A. - Le/Le 11:6; Péntek/Racz R. - Le/Le 13:11; Pawletko/Tóth A. - Kétszeri/Szeli L. 11:1; Péntek/Racz R. - Pawletko/Tóth A. 11:0; Le/Le - Kétszeri/Szeli L. 11:0.
   * D csoport: Nagy D./Dinnyés - Németh A./Berta 11:4; Viszokai L./Molnár R. - Simon Z./Soós S. 11:5; Viszokai L./Molnár R. - Németh A./Berta 11:7; Dinnyés/Nagy D. - Simon Z./Soós S. 11:5; Nagy D./Dinnyés - Viszokai L./Molnár R. 11:4; Németh A./Berta - Simon Z./Soós S. 12:10.
 
-=== 5. SZOMBATI RÁJÁTSZÁSOK HIVATALOS VÉGEREDMÉNYEI ===
-- Női egyéni OB2/A végeredmény: 1. Takács Flóra, 2. Tábori Petra, 3. Rupf Anna, 4. Szabadits Eszter. Döntő: Takács F. - Tábori P. 11:8, 3. helyért: Rupf A. - Szabadits E. 11:7. Mellékág (5-7. hely): 5. Kecskés Rita, 6. Rédecsi Anna, 7. Horváth Ágnes.
-- Női egyéni OB2/B végeredmény: 1. Sipos Anna, 2. Viszokai Viktória, 3. Szabolcsiné Morvai Katalin, 4. Feketéné Gyulai Dóra.
-- Férfi egyéni OB2/A végeredmény: 1. Mayer Iván, 2. Tomori Benedek, 3. Török Bence, 4. Alasztics Benjamin. Főág döntő: Mayer I. - Tomori B. 12:10. 3. helyért: Török B. - Alasztics B. 11:6. 5-8. hely: 5. Csende Zsolt, 6. Magyar Csanád, 7. Fogaras Pál, 8. Fekete Géza. 9-12. hely: 9. Szabolcsi Attila, 10. Takács Attila, 11. Takács Vince, 12. Berky Péter. 13-16. hely: 13. Katona Milán, 14. Ghalegolab Arman, 15. Kínál Zoltán, 16. Magyar Benedek.
-- Férfi páros OB2/A végeredmény: 1. Dobos Ákos / Török Bence, 2. Szabolcsi Attila / Katona Milán, 3. Komáromi Róbert / Tomori Benedek, 4. Fogaras Pál / Fekete Géza. Döntő: Dobos/Török - Szabolcsi/Katona 11:3. 3. helyért: Komáromi/Tomori - Fogaras/Fekete 11:8. 5-8. hely: 5. Takács Attila / Tarr Sándor, 6. Magyar Benedek / Magyar Dániel, 7. Schmidt Adam / Mayer Iván, 8. Takács Vince / Ákos Halápi. 9-12. hely: 9. Ghalegolab/Csende, 10. Endre/Kínál, 11. Schnell/Schnell, 12. Szeli L./Kétszeri L. 13. Magyar Csanád / Berky Péter, 14. Komócsin Balázs / Püspök Patrik.
-- Férfi egyéni OB2/B végeredmény: 1. Mészáros Szerhij, 2. Dinnyés János, 3. Tóth András, 4. Szeli Lénárd. Döntő: Mészáros Sz. - Dinnyés J. 12:10. 3. helyért: Tóth A. - Szeli L. 11:5. 5-8. hely: 5. Racz Robert, 6. Pawletko Peter, 7. Dávid Ádám, 8. Magyar Dániel. 9-12. hely: 9. Nagy Dávid, 10. Tomori Tamás, 11. Péntek Vilmos, 12. Bruckner Nándor. 13. Fekete Barnabás, 14. Tran Van Dat.
-- Férfi páros OB2/B végeredmény: 1. Alasztics Benjamin / Németh Tamás, 2. Péntek Vilmos / Racz Robert, 3. Fekete Kristóf / Mészáros Szerhij, 4. Viszokai László / Molnár Róbert. Döntő: Alasztics/Németh - Péntek/Racz 11:4. 3. helyért: Fekete/Mészáros - Viszokai/Molnár 11:6. 5-8. hely: 5. Dinnyés János / Nagy Dávid, 6. Fekete Barnabás / Dávid Ádám, 7. Pawletko Peter / Tóth András, 8. Karda Zoltán / Gulyás Nándor. 9-12. hely: 9. Berta Szabolcs / Németh Attila, 10. Le Tan Minh / Le Tan Dung, 11. Bruckner Nándor / Füzi Benedek, 12. Decsi Gábor / Pál Barnabás. 13. Soós Sándor / Simon Zoltán, 14. Szeli Lénárd / Kétszeri Dániel.
+=== 4. SZOMBATI HELYOSZTÓK ÉS EGYENES KIESÉSES MECCSEK EREDMÉNYEI ===
+- Női egyéni OB2/A helyosztók:
+  * Elődöntők: Tábori Petra - Szabadits Eszter 11:5; Takács Flóra - Rupf Anna 11:8. Döntő: Takács Flóra - Tábori Petra 11:8. 3. helyért: Rupf Anna - Szabadits Eszter 11:7. 5. helyért: Kecskés Rita - Rédecsi Anna 11:3. 
+- Férfi egyéni OB2/A helyosztók:
+  * Negyeddöntők: Mayer Iván - Fogaras Pál 11:5; Török Bence - Csende Zsolt 11:9; Tomori Benedek - Fekete Géza 11:3; Alasztics Benjamin - Magyar Csanád 11:1.
+  * Elődöntők: Mayer Iván - Török Bence 11:3; Tomori Benedek - Alasztics Benjamin 11:3. Döntő: Mayer Iván - Tomori Benedek 12:10. 3. helyért: Török Bence - Alasztics Benjamin 11:6.
+  * 5. helyért: Csende Zsolt - Magyar Csanád 11:8. 7. helyért: Fogaras Pál - Fekete Géza 11:7. 9. helyért: Szabolcsi Attila - Takács Attila 11:6. 11. helyért: Takács Vince - Berky Péter 11:5. 13. helyért: Katona Milán - Ghalegolab Arman 11:5. 15. helyért: Kínál Zoltán - Magyar Benedek 11:9.
+- Férfi páros OB2/A helyosztók:
+  * Elődöntők: Szabolcsi/Katona - Fogaras/Fekete 11:8; Dobos/Török - Komáromi/Tomori 11:8. Döntő: Dobos Ákos / Török Bence - Szabolcsi Attila / Katona Milán 11:3. 3. helyért: Komáromi Róbert / Tomori Benedek - Fogaras Pál / Fekete Géza 11:8.
+  * 5. helyért: Takács A./Tarr - Magyar/Magyar 11:4. 7. helyért: Schmidt/Mayer - Takács V./Halápi 11:1. 9. helyért: Ghalegolab/Csende - Endre/Kínál 11:4. 11. helyért: Schnell/Schnell - Szeli L./Kétszeri L. 11:5. 13. helyért: Magyar Csanád / Berky Péter - Komócsin Balázs / Püspök Patrik 11:7.
+- Férfi egyéni OB2/B helyosztók:
+  * Elődöntők: Mészáros Szerhij - Szeli Lénárd 12:10; Dinnyés János - Tóth András 11:8. Döntő: Mészáros Szerhij - Dinnyés János 11:5. 3. helyért: Tóth András - Szeli Lénárd 11:7.
+  * 5. helyért: Racz Robert - Pawletko Peter 11:9. 9. helyért: Nagy Dávid - Tomori Tamás 11:5. 11. helyért: Péntek Vilmos - Bruckner Nándor 11:0. 13. helyért: Fekete Barnabás - Tran Van Dat 11:9.
+- Férfi páros OB2/B helyosztók:
+  * Elődöntők: Alasztics/Németh T. - Fekete K./Mészáros Sz. 11:4; Péntek V./Racz R. - Viszokai L./Molnár R. 11:3. Döntő: Alasztics Benjamin / Németh Tamás - Péntek Vilmos / Racz Robert 11:4. 3. helyért: Fekete Kristóf / Mészáros Szerhij - Viszokai László / Molnár Róbert 11:6.
+  * 5. helyért: Dinnyés/Nagy D. - Fekete B./Dávid Á. 11:8. 7. helyért: Pawletko/Tóth A. - Karda/Gulyás 11:3. 9. helyért: Berta Szabolcs / Németh Attila - Le Tan Minh / Le Tan Dung 11:9. **13. helyért: Sándor Soós / Zsolt Simon - Lénárd Szeli / Dániel Kétszeri 11:1.**
+
+=== 5. SZOMBATI KATEGÓRIÁK HIVATALOS VÉGEREDMÉNYEI ===
+- Női egyéni OB2/A: 1. Takács Flóra, 2. Tábori Petra, 3. Rupf Anna, 4. Szabadits Eszter.
+- Női egyéni OB2/B: 1. Sipos Anna, 2. Viszokai Viktória, 3. Szabolcsiné Morvai Katalin, 4. Feketéné Gyulai Dóra.
+- Férfi egyéni OB2/A: 1. Mayer Iván, 2. Tomori Benedek, 3. Török Bence, 4. Alasztics Benjamin, 5. Csende Zsolt, 6. Magyar Csanád, 7. Fogaras Pál, 8. Fekete Géza.
+- Férfi páros OB2/A: 1. Dobos Ákos / Török Bence, 2. Szabolcsi Attila / Katona Milán, 3. Komáromi Róbert / Tomori Benedek, 4. Fogaras Pál / Fekete Géza, 5. Takács Attila / Tarr Sándor.
+- Férfi egyéni OB2/B: 1. Mészáros Szerhij, 2. Dinnyés János, 3. Tóth András, 4. Szeli Lénárd, 5. Racz Robert, 6. Pawletko Peter, 7. Dávid Ádám.
+- Férfi páros OB2/B: 1. Alasztics Benjamin / Németh Tamás, 2. Péntek Vilmos / Racz Robert, 3. Fekete Kristóf / Mészáros Szerhij, 4. Viszokai László / Molnár Róbert ... 13. Soós Sándor / Simon Zsolt, 14. Szeli Lénárd / Kétszeri Dániel.
 """
 
 # 4. Rendszer-utasítások konfigurálása
