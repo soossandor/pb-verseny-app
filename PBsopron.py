@@ -248,6 +248,24 @@ VASÁRNAP DELES ÉS DÉLUTÁNI VEGYES PÁROSOK:
 - 13:00 C8: Z. KINÁL / M. FÜLES vs. I. MAYER / B. KOMÓCSIN (Vegyes páros OB2/A - Group D-R5)
 
 13:20-tól vasárnap délután végéig: Vegyes páros OB2/A és OB2/B egyenes kieséses rájátszások (Main QF, SF, döntők, vigaszágak és minden helyosztó pozíció).
+
+=== 5. SZOMBATI KATEGÓRIÁK HIVATALOS VÉGEREDMÉNYEI ÉS MECCSEREDMÉNYEK ===
+- Női egyéni OB2/A végeredmény: 1. Takács Flóra, 2. Tábori Petra, 3. Rupf Anna, 4. Szabadits Eszter[cite: 436]. 
+- Női egyéni OB2/A Mellékág (5-7. hely): 5. Kecskés Rita, 6. Rédecsi Anna, 7. Horváth Ágnes[cite: 442, 453, 456, 458]. Döntő: Takács F. - Tábori P. 11:8, 3. helyért: Rupf A. - Szabadits E. 11:7[cite: 436].
+- Női egyéni OB2/B végeredmény (Körmérkőzés): 1. Sipos Anna (2 pont, PR: 2.214), 2. Viszokai Viktória (2 pont, PR: 1.450), 3. Szabolcsiné Morvai Katalin (2 pont, PR: 1.333), 4. Feketéné Gyulai Dóra (0 pont)[cite: 750]. Sipos A. minden meccsét megnyerte (Feketéné ellen 11:1, Viszokai ellen 11:9, Szabolcsiné ellen 11:2)[cite: 752].
+- Férfi egyéni OB2/A végeredmény: 1. Mayer Iván, 2. Tomori Benedek, 3. Török Bence, 4. Alasztics Benjamin[cite: 467, 477]. Főág döntő: Mayer I. - Tomori B. 12:10[cite: 467]. 3. helyért: Török B. - Alasztics B. 11:6[cite: 467].
+- Férfi egyéni OB2/A helyosztók (5-8. hely): 5. Csende Zsolt, 6. Magyar Csanád, 7. Fogaras Pál, 8. Fekete Géza[cite: 493, 495, 498, 500].
+- Férfi egyéni OB2/A Mellékág (9-12. hely): 9. Szabolcsi Attila, 10. Takács Attila, 11. Takács Vince, 12. Berky Péter[cite: 510, 512, 516, 519]. 
+- Férfi egyéni OB2/A Vigaszág (13-16. hely): 13. Katona Milán, 14. Behbahani Arman Ghalegolab, 15. Kínál Zoltán, 16. Magyar Benedek[cite: 534, 537, 540, 542].
+- Férfi páros OB2/A végeredmény: 1. Dobos Ákos / Török Bence, 2. Szabolcsi Attila / Katona Milán, 3. Komáromi Róbert / Tomori Benedek, 4. Fogaras Pál / Fekete Géza[cite: 544]. Döntő: Dobos/Török - Szabolcsi/Katona 11:3[cite: 544]. 3. helyért: Komáromi/Tomori - Fogaras/Fekete 11:8[cite: 544].
+- Férfi páros OB2/A helyosztók (5-8. hely): 5. Takács Attila / Tarr Sándor, 6. Magyar Benedek / Magyar Dániel, 7. Schmidt Adam Anton / Mayer Iván, 8. Takács Vince / Ákos Halápi[cite: 547].
+- Férfi páros OB2/A Mellékág (9-12. hely): 9. Behbahani Arman Ghalegolab / Csende Zsolt, 10. Csernavay Endre / Kínál Zoltán, 11. Schnell Attila / Schnell Imre, 12. Szeli László / Kétszeri László[cite: 570, 575, 581, 583]. 13-14. hely: 13. Magyar Csanád / Berky Péter, 14. Komócsin Balázs / Püspök Patrik[cite: 586].
+- Férfi egyéni OB2/B végeredmény: 1. Mészáros Szerhij, 2. Dinnyés János, 3. Tóth András, 4. Szeli Lénárd[cite: 617, 626]. Döntő: Mészáros Sz. - Dinnyés J. 12:10. 3. helyért: Tóth A. - Szeli L. 11:5.
+- Férfi egyéni OB2/B helyosztók (5-8. hely): 5. Racz Robert, 6. Pawletko Peter, 7. Dávid Ádám, 8. Magyar Dániel[cite: 642, 643, 648].
+- Férfi egyéni OB2/B Mellékág (9-12. hely): 9. Nagy Dávid, 10. Tomori Tamás, 11. Péntek Vilmos, 12. Bruckner Nándor[cite: 664, 665, 668, 670]. 13-14. hely: 13. Fekete Barnabás, 14. Tran Van Dat[cite: 672].
+- Férfi páros OB2/B végeredmény: 1. Alasztics Benjamin / Németh Tamás, 2. Péntek Vilmos / Racz Robert, 3. Fekete Kristóf / Mészáros Szerhij, 4. Viszokai László / Molnár Róbert[cite: 673, 674]. Döntő: Alasztics/Németh - Péntek/Racz 11:4[cite: 673]. 3. helyért: Fekete/Mészáros - Viszokai/Molnár 11:6[cite: 673].
+- Férfi páros OB2/B helyosztók (5-8. hely): 5. Dinnyés János / Nagy Dávid, 6. Fekete Barnabás / Dávid Ádám, 7. Pawletko Peter / Tóth András, 8. Karda Zoltán / Gulyás Nándor[cite: 676].
+- Férfi páros OB2/B Mellékág (9-12. hely): 9. Berta Szabolcs / Németh Attila, 10. Le Tan Minh / Le Tan Dung, 11. Bruckner Nándor / Füzi Benedek, 12. Decsi Gábor / Pál Barnabás[cite: 683]. 13-14. hely: 13. Soós Sándor / Simon Zoltán, 14. Szeli Lénárd / Kétszeri Dániel.
 """
 
 # 4. Rendszer-utasítások konfigurálása
