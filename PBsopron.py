@@ -6,7 +6,10 @@ from google.genai import types
 st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓", layout="centered")
 
 st.title("🏓 Sopron Pickleball & Fesztivál Asszisztens")
-st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** and a **Sopron Festtel** kapcsolatban!")
+st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
+
+# Új tájékoztató sáv a szombati meccseredményekről
+st.success("🔥 **ÚJDONSÁG:** Most már a **szombati nap összes eredményéről** is kérdezhetsz! Nemcsak a végső helyezések, hanem az összes lejátszott csoportmeccs és helyosztó pontos pontszáma is elérhető!")
 
 # 2. A Gemini API kulcs biztonságos kezelése a felhőben
 if "GEMINI_API_KEY" in st.secrets:
@@ -15,14 +18,14 @@ else:
     st.error("Hiba: A GEMINI_API_KEY nem található a Streamlit Secrets beállításokban!")
     st.stop()
 
-# 3. A VERSENY FIX ADATBÁZISA (Javított nevekkel és pontos struktúrával)
+# 3. A VERSENY FIX ADATBÁZISA
 VERSENY_KONTEXTUS = """
 === 1. ÁLTALÁNOS VERSENYINFORMÁCIÓK ÉS SZABÁLYOK ===
 - Verseny megnevezése: Magyar Országos Pickleball Bajnokság 2026 - Másodosztály - 3. forduló.
 - Időpont: 2026. július 4-05. (Szombat és Vasárnap).
 - Helyszín: 9400 Sopron, Lővér krt. 1., SVSE Sporttelep.
 - Hivatalos Labda: Franklin márkájú kültéri labda. A labda színével megegyező vagy ahhoz nagyon hasonló felszerelés (ruha) viselése TILOS!
-- Mérkőzések menete: 1 nyert játszmáig (szettig) tartanak. A győzelemhez 11 pontot kell đạtni, legalább 2 pont különbséggel.
+- Mérkőzések menete: 1 nyert játszmáig (szettig) tartanak. A győzelemhez 11 pontot kell elérni, legalább 2 pont különbséggel.
 - Térfélcsere: Amikor a mérkőzésen vezető játékos/páros eléri a 6 pontot, térfélcserére kerül sor.
 
 === 2. VASÁRNAPI MENETREND (2026.07.05.) ===
@@ -88,7 +91,7 @@ VEGYES PÁROSOK (VASÁRNAP):
   * 5. helyért: Racz Robert - Pawletko Peter 11:9. 9. helyért: Nagy Dávid - Tomori Tamás 11:5. 11. helyért: Péntek Vilmos - Bruckner Nándor 11:0. 13. helyért: Fekete Barnabás - Tran Van Dat 11:9.
 - Férfi páros OB2/B helyosztók:
   * Elődöntők: Alasztics/Németh T. - Fekete K./Mészáros Sz. 11:4; Péntek V./Racz R. - Viszokai L./Molnár R. 11:3. Döntő: Alasztics Benjamin / Németh Tamás - Péntek Vilmos / Racz Robert 11:4. 3. helyért: Fekete Kristóf / Mészáros Szerhij - Viszokai László / Molnár Róbert 11:6.
-  * 5. helyért: Dinnyés/Nagy D. - Fekete B./Dávid Á. 11:8. 7. helyért: Pawletko/Tóth A. - Karda/Gulyás 11:3. 9. helyért: Berta Szabolcs / Németh Attila - Le Tan Minh / Le Tan Dung 11:9. **13. helyért: Sándor Soós / Zsolt Simon - Lénárd Szeli / Dániel Kétszeri 11:1.**
+  * 5. helyért: Dinnyés/Nagy D. - Fekete B./Dávid Á. 11:8. 7. helyért: Pawletko/Tóth A. - Karda/Gulyás 11:3. 9. helyért: Berta Szabolcs / Németh Attila - Le Tan Minh / Le Tan Dung 11:9. 13. helyért: Sándor Soós / Zsolt Simon - Lénárd Szeli / Dániel Kétszeri 11:1.
 
 === 5. SZOMBATI KATEGÓRIÁK HIVATALOS VÉGEREDMÉNYEI ===
 - Női egyéni OB2/A: 1. Takács Flóra, 2. Tábori Petra, 3. Rupf Anna, 4. Szabadits Eszter.
