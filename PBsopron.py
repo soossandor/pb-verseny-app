@@ -81,7 +81,7 @@ VERSENY_KONTEXTUS = """
   * A csoport: Berta Szabolcs / Gyimesi-Varga Petra - Fancsaliné Kotán Edit / Torma László 11:5; Petrovics Laura / Schmidt Adam Anton - Fancsaliné Kotán Edit / Torma László 11:2; Petrovics Laura / Schmidt Adam Anton - Berta Szabolcs / Gyimesi-Varga Petra 12:10.
   * B csoport: Fekete Barnabás / Feketéné Gyulai Dóra - Jagicza Kata / Tran Van Dat 11:2; Molnár Róbert / Kecskés Amáta Nóra - Jagicza Kata / Tran Van Dat 11:2; Molnár Róbert / Kecskés Amáta Nóra - Feketéné Gyulai Dóra / Fekete Barnabás 11:2.
   * C csoport: Máté Attila / Sipos Anna - Füzi Benedek / Fekete Andrea Rozália 11:8; Németh Eszter / Decsi Gábor - Takács Zsolt / Hranyczka Lászlóné 12:10; Máté Attila / Sipos Anna - Hranyczka Lászlóné / Takács Zsolt 11:2; Máté Attila / Sipos Anna - Németh Eszter / Decsi Gábor 11:2.
-  * D csoport: Karda Zoltán / Kecskés Rita - Viszokai László / Viszokai Viktória 11:2; Soós Sándor / Brindza Gyöngyike - Dávid Ádám / Steinwengerné Lugosi Katalin 11:2; Karda Zoltán / Kecskés Rita - Dávid Ádám / Steinwengerné Lugosi Katalin 11:6; Soós Sándor / Brindza Gyöngyike - Viszokai László / Viszokai Viktória 16:14.
+  * D csoport: Soós Sándor / Brindza Gyöngyike - Karda Zoltán / Kecskés Rita 10:12; Soós Sándor / Brindza Gyöngyike - Dávid Ádám / Steinwengerné Lugosi Katalin 11:2; Soós Sándor / Brindza Gyöngyike - Viszokai László / Viszokai Viktória 16:14; Karda Zoltán / Kecskés Rita - Viszokai László / Viszokai Viktória 11:2; Karda Zoltán / Kecskés Rita - Dávid Ádám / Steinwengerné Lugosi Katalin 11:6; Viszokai László / Viszokai Viktória - Dávid Ádám / Steinwengerné Lugosi Katalin 11:3. # ITT PÓTOLVA A HARMADIK CSOPORTMECCS!
 
 === 4. HIVATALOS RÁJÁTSZÁS ÉS HELYOSZTÓ MÉRKŐZÉSEK EREDMÉNYEI ===
 - NŐI PÁROS OB2/A:
@@ -101,6 +101,7 @@ VERSENY_KONTEXTUS = """
   * 7. helyért: Nóra Csigó / Ákos Sónyák - Attila Szabolcsi / Katalin Szabolcsiné Morvai 11:8.
 - VEGYES PÁROSOK OB2/B:
   * Negyeddöntők: Berta Szabolcs / Gyimesi-Varga Petra - Decsi Gábor / Németh Eszter 11:5; Jagicza Kata / Tran Van Dat - Karda Zoltán / Kecskés Rita 11:7; Schmidt Adam Anton / Laura Petrovics - Máté Attila / Sipos Anna 11:2; Molnár Róbert / Kecskés Amáta Nóra - Soós Sándor / Brindza Gyöngyike 11:3.
+  * 5–8. helyért helyosztó elődöntők: Gábor Decsi / Eszter Németh - Karda Zoltán / Kecskés Rita 11:6; Attila Máté / Anna Sipos - Soós Sándor / Brindza Gyöngyike 13:11. # ITT PÓTOLVA A HIÁNYZÓ MÁSODIK RÁJÁTSZÁS!
   * Elődöntők: Jagicza Kata / Tran Van Dat - Berta Szabolcs / Gyimesi-Varga Petra 11:8; Molnár Róbert / Kecskés Amáta Nóra - Schmidt Adam Anton / Laura Petrovics 13:11.
   * Döntő: Kata Jagicza / Dat Tran Van - Róbert Molnár / Nóra Kecskés Amáta 11:7.
   * 3. helyért: Szabolcs Berta / Petra Gyimesi-Varga - Adam Anton Schmidt / Laura Petrovics 11:8.
