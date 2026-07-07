@@ -6,7 +6,7 @@ from google.genai import types
 st.set_page_config(page_title="Sopron Pickleball Asszisztens", page_icon="🏓", layout="centered")
 
 st.title("🏓 Sopron Pickleball & Fesztivál Asszisztens")
-st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** and a **Sopron Festtel** kapcsolatban!")
+st.write("Írd be a neved vagy a kérdésed! Kikeresem a menetrended, segítek a szabályokban, vagy adok élő tippeket **Sopron városával** és a **Sopron Festtel** kapcsolatban!")
 
 # Siker sáv a lezárt, auditált hétvégi eredménytárhoz
 st.success("🎉 **MEGLEPETÉS:** A verseny sikeresen lezárult! Az asszisztens a teljes hétvége összes számszerű meccs- és csoportgyőzelmét ismeri, 100%-os bírói pontossággal!")
@@ -101,13 +101,13 @@ VERSENY_KONTEXTUS = """
   * 7. helyért: Nóra Csigó / Ákos Sónyák - Attila Szabolcsi / Katalin Szabolcsiné Morvai 11:8.
 - VEGYES PÁROSOK OB2/B:
   * Negyeddöntők: Berta Szabolcs / Gyimesi-Varga Petra - Decsi Gábor / Németh Eszter 11:5; Jagicza Kata / Tran Van Dat - Karda Zoltán / Kecskés Rita 11:7; Schmidt Adam Anton / Laura Petrovics - Máté Attila / Sipos Anna 11:2; Molnár Róbert / Kecskés Amáta Nóra - Soós Sándor / Brindza Gyöngyike 11:3.
-  * Elődöntők: Jagicza Kata / Tran Van Dat - Berta Szabolcs / Gyimesi-Varga Petra 11:7; Molnár Róbert / Kecskés Amáta Nóra - Schmidt Adam Anton / Laura Petrovics 13:11.
+  * Elődöntők: Jagicza Kata / Tran Van Dat - Berta Szabolcs / Gyimesi-Varga Petra 11:8; Molnár Róbert / Kecskés Amáta Nóra - Schmidt Adam Anton / Laura Petrovics 13:11.
   * Döntő: Kata Jagicza / Dat Tran Van - Róbert Molnár / Nóra Kecskés Amáta 11:7.
   * 3. helyért: Szabolcs Berta / Petra Gyimesi-Varga - Adam Anton Schmidt / Laura Petrovics 11:8.
   * 7. helyért: Karda Zoltán / Kecskés Rita - Soós Sándor / Brindza Gyöngyike 11:3.
-- FIXÁLT SZOMBATI HELYOSZTÓ KORREKCIÓK:
-  * 5. helyért: Csende Zsolt - Magyar Csanád 11:2 (frissítve a meccsnapló pontos állása szerint).
-  * 13. helyért (Férfi páros OB2/B): Lénárd Szeli / Dániel Kétszeri - Sándor Soós / Zsolt Simon 11:1.
+- FIXÁLT HELYOSZTÓ KORREKCIÓK:
+  * Férfi egyéni OB2/A (5. helyért): Csende Zsolt - Magyar Csanád 11:2.
+  * Férfi páros OB2/B (13. helyért): Sándor Soós / Zsolt Simon - Lénárd Szeli / Dániel Kétszeri 11:1.
 
 === 5. HIVATALOS MÉRKŐZÉSNAP VÉGEREDMÉNYEK (DOBOGÓSOK) ===
 1. Női egyéni OB2/A: 1. Takács Flóra, 2. Tábori Petra, 3. Rupf Anna.
@@ -139,15 +139,15 @@ A válaszadás során az alábbi prioritási és témakör-rendet kövesd:
 {VERSENY_KONTEXTUS}
 Amennyiben a kérdés egy olyan konkrét soproni tornára vagy médiára vonatkozó adatra irányul, ami nincs benne a szövegben, mondd azt: "Erről nincs pontos információm a kiírásban, kérlek fordulj a versenybíróhoz!"
 
-2. ÁLTALÁNOS PICKLEBALL TUDÁS: Ha a kérdés általános pickleball szabályra, kifejezésre, pontozásra, ütésfajtára vagy taktikára vonatkozik, használd a saját széleskörű pickleball szakértelmedet, and válaszolj rá részletesen és segítőkészen.
+2. ÁLTALÁNOS PICKLEBALL TUDÁS: Ha a kérdés általános pickleball szabályra, kifejezésre, pontozásra, ütésfajtára vagy taktikára vonatkozik, használd a saját széleskörű pickleball szakértelmedet, és válaszolj rá részletesen és segítőkészen.
 
 3. SOPRON VÁROSA ÉS SOPRON FEST: Ha a kérdés Sopron látnivalóira, éttermeire, helyi közlekedésére, vagy a most hétvégén zajló Sopron Fest zenei/kulturális fesztiválra, annak hangulatára, helyszínére vagy részletes napi programjaira vonatkozik, használd bátran a Google Keresés segítségével! Segíts nekik naprakész fesztivál- és városi tippekkel.
 
-4. SZIGORÚ TÉMAKORLÁT: Ha a kérdés egyáltalán NEM kapcsolódik a pickleballhoz, a soproni bajnoksághoz, Sopron városához vagy a Sopron Festhez, akkor NE válaszolj rá! Udvariasan, pici sportos humorral utasítsd vissza, and emlékeztesd a felhasználót, hogy ez az app kizárólag a Sopron Pickleball & Fesztivál hivatalos asszisztense.
+4. SZIGORÚ TÉMAKORLÁT: Ha a kérdés egyáltalán NEM kapcsolódik a pickleballhoz, a soproni bajnoksághoz, Sopron városához vagy a Sopron Festhez, akkor NE válaszolj rá! Udvariasan, pici sportos humorral utasítsd vissza, és emlékeztesd a felhasználót, hogy ez az app kizárólag a Sopron Pickleball & Fesztivál hivatalos asszisztense.
 
 Szabályok:
-- Használj listákat and félkövér kiemeléseket a lényeges részeknél (időpontok, pályák, helyszínek) a könnyebb olvashatóságért!
-- A stílusod legyen sportszerű, profi, de barátságos and közvetlen.
+- Használj listákat és félkövér kiemeléseket a lényeges részeknél (időpontok, pályák, helyszínek) a könnyebb olvashatóságért!
+- A stílusod legyen sportszerű, profi, de barátságos és közvetlen.
 """
 
 # 5. Felhasználói felület és keresési logika ÉLŐ GOOGLE GROUNDING-AL
